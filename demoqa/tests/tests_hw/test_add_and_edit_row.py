@@ -1,7 +1,7 @@
 from pages.web_tables import WebTables
 import time
 
-def test_hw_11(browser):
+def test_add_and_edit_row(browser):
     wt = WebTables(browser)
 
     wt.visit()
