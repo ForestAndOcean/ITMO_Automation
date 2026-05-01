@@ -5,16 +5,12 @@ from pages.browser_tab import BrowserTab
 import pytest
 import time
 
-def test_check_title_demo(browser):
-    demo_qa_page = Demoqa(browser)
-
-    demo_qa_page.visit()
-    assert browser.title == 'demosite'
-
-
 @pytest.mark.parametrize('pages', [Accordion, Alerts, Demoqa, BrowserTab])
 def test_check_title_all_pages(browser, pages):
     page = pages(browser)
     page.visit()
     time.sleep(2)
-    assert page.get_title() == 'demosite'
+
+    assert page.viewport.exist()
+    assert page.viewport.get_dom_attribute('name') == 'viewport'
+    assert page.viewport.get_dom_attribute('content') == 'width=device-width, initial-scale=1.0'
